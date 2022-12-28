@@ -12,6 +12,7 @@ export default function QuestionBox() {
     })
     const [answer, setAnswer] = useState('')
     const [summary, setSummary] = useState(false)
+    const [color, setColor] = useState('white')
 
     function handleChange(e) {
         setAnswer(e.target.value)
@@ -19,7 +20,10 @@ export default function QuestionBox() {
 
     function handleClick() {
         if(answer !== vocabulary.esp) {
-            console.log(vocabulary.eng)
+            setColor('red')
+            setTimeout(() => {
+                setColor('white')
+            }, 1000)
         }
         if(answer === vocabulary.esp && index < vocab.length) {
             setShow(true)
@@ -57,7 +61,7 @@ export default function QuestionBox() {
         <div className="field box">
             {show && 
                 <div className='question box'>
-                    <label className='label'>{vocabulary.eng} <i className="fa-solid fa-volume-high" onClick={playWord}></i></label>
+                    <label className='label'  style={{color: color}} id='label'>{vocabulary.eng} <i className="fa-solid fa-volume-high" onClick={playWord}></i></label>
                     <input type="text" className='input-field' name="userAnswer" onChange={handleChange} value={answer} autoFocus/>
                 </div>}
             <button className='btn' onClick={handleClick}>{vocabulary.id === 0 ? 'Start' : 'Submit'}</button>
