@@ -18,10 +18,10 @@ export default function QuestionBox() {
     }
 
     function handleClick() {
-        if(answer !== vocabulary.eng) {
+        if(answer !== vocabulary.esp) {
             console.log(vocabulary.eng)
         }
-        if(answer === vocabulary.eng && index < vocab.length) {
+        if(answer === vocabulary.esp && index < vocab.length) {
             setShow(true)
             setIndex(prevVal => {
                 return prevVal + 1
@@ -40,14 +40,27 @@ export default function QuestionBox() {
         }
     }
 
+    function speakWord(text) {
+        const speech = new SpeechSynthesisUtterance()
+        if(speechSynthesis.speaking) return
+        speech.lang = 'es-ES'
+        speech.text = text
+        speech.rate = 1
+        speechSynthesis.speak(speech)
+    }
+
+    function playWord() {
+        speakWord(vocabulary.esp)
+    }
+
     return (
-        <div className="question-box">
+        <div className="field box">
             {show && 
-                <div>
-                    <label>{vocabulary.esp}</label>
-                    <input type="text" name="userAnswer" onChange={handleChange} value={answer} />
+                <div className='question box'>
+                    <label className='label'>{vocabulary.eng} <i className="fa-solid fa-volume-high" onClick={playWord}></i></label>
+                    <input type="text" className='input-field' name="userAnswer" onChange={handleChange} value={answer} autoFocus/>
                 </div>}
-            <button onClick={handleClick}>{vocabulary.id === 0 ? 'Start' : 'Submit'}</button>
+            <button className='btn' onClick={handleClick}>{vocabulary.id === 0 ? 'Start' : 'Submit'}</button>
             {summary && vocab.map(v => {
                 return <p>{v.eng} = {v.esp}</p>
             })}

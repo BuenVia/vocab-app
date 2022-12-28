@@ -5,17 +5,61 @@
 }
 
 .App {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Courier New', Courier, monospace;
+  background-color: black;
+  color: whitesmoke;
 }
 
-.question-box {
-  margin-top: 5rem;
+.box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.question {
+
+}
+
+.field {
+  margin-top: 5rem;
+}
+
+.fa-solid {
+  cursor: pointer;
+}
+
+.label {
+  font-size: 36px;
+  margin: 1rem 0;
+}
+
+.input-field {
+  padding: .5rem;
+  width: 300px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid whitesmoke;
+  outline: none;
+  font-size: 24px;
+  color: whitesmoke;
+}
+
+.btn {
+  margin-top: 1rem;
+  padding: .5rem;
+  border-radius: 10px;
+  background-color: rgb(58, 196, 99);
+  color: rgb(4, 56, 4);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: green;
+  color: aliceblue;
 }
